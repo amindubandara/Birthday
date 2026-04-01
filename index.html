@@ -5,106 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy 25th Birthday!</title>
     <style>
-        /* CSS Styles */
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #1a1a1a; /* Dark sleek background */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        .card-container {
-            perspective: 1000px;
-        }
-
-        .birthday-card {
-            position: relative;
-            width: 320px;
-            height: 420px;
-            cursor: pointer;
-            transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .birthday-card.open {
-            transform: rotateY(-180deg);
-        }
-
-        .front, .back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            padding: 30px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        .front {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: white;
-            z-index: 2;
-            border: 5px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .front h1 {
-            font-size: 90px;
+            min-height: 100vh;
+            background: #1a1a1a;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+            padding: 20px;
+            color: white;
         }
 
-        .front p {
-            font-size: 18px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 10px;
+        /* Card Styles */
+        .card-container { perspective: 1000px; margin-bottom: 30px; }
+        .birthday-card {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        .back {
-            background: #ffffff;
-            transform: rotateY(180deg);
-            color: #333;
+        .birthday-card.open { transform: rotateY(-180deg); }
+        .front, .back {
+            position: absolute;
+            width: 100%; height: 100%;
+            backface-visibility: hidden;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            border-radius: 20px; padding: 20px; text-align: center;
+            box-sizing: border-box;
         }
+        .front { background: linear-gradient(135deg, #6e8efb, #a777e3); border: 4px solid #fff; }
+        .front h1 { font-size: 80px; margin: 0; }
+        .back { background: #fff; transform: rotateY(180deg); color: #333; }
 
-        .back h2 {
-            color: #a777e3;
-            font-size: 28px;
-            margin-bottom: 10px;
+        /* Video & Download Section */
+        .video-section {
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
         }
-
-        .back p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #555;
-        }
-
-        .age-badge {
-            background: #ffcc33;
-            color: #333;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-weight: bold;
+        video {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
             margin-bottom: 15px;
         }
-
-        .instruction {
-            position: absolute;
-            bottom: -50px;
+        .btn-download {
+            display: inline-block;
+            background: #25D366; /* WhatsApp Green */
             color: white;
-            width: 100%;
-            text-align: center;
-            opacity: 0.7;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
         }
+        .btn-download:hover { background: #128C7E; transform: scale(1.05); }
     </style>
 </head>
 <body>
@@ -113,53 +76,41 @@
         <div class="birthday-card" id="card" onclick="openCard()">
             <div class="front">
                 <h1>25</h1>
-                <p>Happy Birthday</p>
-                <div class="instruction">Click to reveal your message</div>
+                <p>Happy Birthday!</p>
+                <small>(Tap to Open)</small>
             </div>
-
             <div class="back">
-                <div class="age-badge">Level 25 Unlocked</div>
-                <h2>Cheers to You!</h2>
-                <p>Happy Quarter-Century! May your 25th year be filled with adventure, success, and plenty of cake.</p>
-                <div style="font-size: 50px;">🎉🎂🥂</div>
+                <h2>Cheers! 🥂</h2>
+                <p>Welcome to 25. May this year be your best one yet!</p>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <div class="video-section">
+        <p>Watch & Share on WhatsApp</p>
+        <video id="bdayVideo" controls>
+            <source src="your-video-link.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <br>
+        <a href="your-video-link.mp4" download="HappyBirthday25.mp4" class="btn-download">
+            Download Video for WhatsApp 📲
+        </a>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
         function openCard() {
             const card = document.getElementById('card');
-            const isOpen = card.classList.contains('open');
-            
-            card.classList.toggle('open');
-            
-            // Only fire confetti when opening
-            if (!isOpen) {
-                const duration = 3 * 1000;
-                const end = Date.now() + duration;
-
-                (function frame() {
-                    confetti({
-                        particleCount: 3,
-                        angle: 60,
-                        spread: 55,
-                        origin: { x: 0 },
-                        colors: ['#6e8efb', '#a777e3', '#ffcc33']
-                    });
-                    confetti({
-                        particleCount: 3,
-                        angle: 120,
-                        spread: 55,
-                        origin: { x: 1 },
-                        colors: ['#6e8efb', '#a777e3', '#ffcc33']
-                    });
-
-                    if (Date.now() < end) {
-                        requestAnimationFrame(frame);
-                    }
-                }());
+            if(!card.classList.contains('open')) {
+                card.classList.add('open');
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                card.classList.remove('open');
             }
         }
     </script>
